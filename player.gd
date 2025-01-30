@@ -9,6 +9,7 @@ var left = "p1_left"
 var right = "p1_right"
 var shoot = "p1_shoot"
 
+var health = 3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -25,4 +26,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	queue_free()
+	health -= 1
+	area.queue_free()
+	if health <= 0:
+		queue_free()
