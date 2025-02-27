@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dck55rnh0qwid"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_jn20x"]
+[ext_resource type="Texture2D" uid="uid://bu8hcjk10jv7k" path="res://Sprites/Ships/ship_0009.png" id="2_3r5xo"]
+[ext_resource type="PackedScene" uid="uid://cog6vtp67tiid" path="res://enemy_bullet.tscn" id="2_mac5a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tfbs"]
+radius = 4.0
+height = 20.0
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 4
+collision_mask = 34
+script = ExtResource("1_jn20x")
+bullet_scene = ExtResource("2_mac5a")
+speed = 100
+bullet_cooldown = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("2_3r5xo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6tfbs")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 11)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
