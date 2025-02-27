@@ -9,7 +9,7 @@ extends Area2D
 @export var bullet_manager: Node2D
 
 # Variables
-var speed = 100
+var speed = 200
 var bullet_cooldown = 0.2
 var time_since_firing = 0.0
 
@@ -26,15 +26,18 @@ func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector(left, right, up, down)
 	
 	position += direction * speed * delta
+	
+	rotation = lerp(rotation, direction.x * PI/15 - PI/2, 0.1)  # Rotate player if moving
+	
 	# Clamp position here
 	
 	time_since_firing += delta
 	if Input.is_action_pressed(shoot) and time_since_firing >= bullet_cooldown:
 		attack()
-		time_since_firing -= bullet_cooldown
+		time_since_firing = 0
 
 
 func attack():
 	var new_bullet = bullet_scene.instantiate()
-	new_bullet.position = gun_marker.position
+	new_bullet.transform = gun_marker.global_transform
 	bullet_manager.add_child(new_bullet)
