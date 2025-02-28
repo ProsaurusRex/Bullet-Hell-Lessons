@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://btbcy5anxcdgn"]
+[gd_scene load_steps=6 format=3 uid="uid://btbcy5anxcdgn"]
 
 [ext_resource type="PackedScene" uid="uid://b38hwnvf8seew" path="res://Enemies/enemy_template.tscn" id="1_du3hv"]
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="2_0pbx3"]
 [ext_resource type="Texture2D" uid="uid://bu8hcjk10jv7k" path="res://Sprites/Ships/ship_0009.png" id="2_aj5wl"]
+[ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://bullet.tscn" id="3_tyqaj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gcmc"]
 radius = 7.0
 
 [node name="BasicEnemy" instance=ExtResource("1_du3hv")]
 script = ExtResource("2_0pbx3")
+bullet_scene = ExtResource("3_tyqaj")
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_aj5wl")

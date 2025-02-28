@@ -141,7 +141,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAACAAQAAAAAAAEAAAACAAUAAAAAAAIAAAAGAAM
 tile_set = SubResource("TileSet_jjw8i")
 
 [node name="Parallax2D2" type="Parallax2D" parent="."]
-repeat_size = Vector2(0, 397)
+repeat_size = Vector2(250, 397)
 autoscroll = Vector2(0, 150)
 repeat_times = 3
 

@@ -3,6 +3,7 @@ extends Area2D
 
 # Node shortcuts
 @onready var gun_marker = $Marker2D
+@onready var health_bar: TextureProgressBar = $CanvasLayer/Health
 
 # Exports
 @export var bullet_scene: PackedScene
@@ -27,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	
 	position += direction * speed * delta
 	
-	rotation = lerp(rotation, direction.x * PI/15 - PI/2, 0.1)  # Rotate player if moving
+	$Sprite2D.rotation = lerp($Sprite2D.rotation, direction.x * PI/15 + PI/2, 0.1)  # Rotate player if moving
 	
 	# Clamp position here
 	
@@ -40,4 +41,20 @@ func _physics_process(delta: float) -> void:
 func attack():
 	var new_bullet = bullet_scene.instantiate()
 	new_bullet.transform = gun_marker.global_transform
+	new_bullet.player_bullet = true
 	bullet_manager.add_child(new_bullet)
+
+
+func take_damage(amount = 1):
+	health_bar.value -= amount
+	if health_bar.value <= 0:
+		queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is Bullet:
+		if not area.player_bullet:
+			take_damage()
+			area.queue_free()
+	elif area is Enemy:
+		take_damage()
