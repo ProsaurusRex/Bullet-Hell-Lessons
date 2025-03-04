@@ -5,14 +5,16 @@ extends Area2D
 @onready var gun_marker = $Marker2D
 @onready var health_bar: TextureProgressBar = $CanvasLayer/Health
 
-# Exports
+# Variables for Bullets and Shooting
 @export var bullet_scene: PackedScene
 @export var bullet_manager: Node2D
+var bullet_cooldown = 0.2
+var time_since_firing = 0.0
+var bullet_count = 1.0
+const MAX_BULLET_COUNT = 5.0
 
 # Variables
 var speed = 200
-var bullet_cooldown = 0.2
-var time_since_firing = 0.0
 
 # Controls
 var up = "p1_up"
@@ -39,10 +41,12 @@ func _physics_process(delta: float) -> void:
 
 
 func attack():
-	var new_bullet = bullet_scene.instantiate()
-	new_bullet.transform = gun_marker.global_transform
-	new_bullet.player_bullet = true
-	bullet_manager.add_child(new_bullet)
+	for i in range(bullet_count):
+		var new_bullet = bullet_scene.instantiate()
+		new_bullet.transform = gun_marker.global_transform
+		new_bullet.rotation += (bullet_count-1)/2 * PI/8 - i * PI/8  # Spread bullets over an angle of PI/8
+		new_bullet.player_bullet = true
+		bullet_manager.add_child(new_bullet)
 
 
 func take_damage(amount = 1):
