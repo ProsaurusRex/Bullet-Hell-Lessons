@@ -35,9 +35,9 @@ script = ExtResource("4_f8drj")
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="EnemyTimer" type="Timer" parent="Timers"]
-autostart = true
 
 [node name="Score" type="Label" parent="."]
+visible = false
 offset_left = 10.0
 offset_top = 8.0
 offset_right = 377.0
@@ -47,6 +47,7 @@ label_settings = SubResource("LabelSettings_u5r7a")
 horizontal_alignment = 2
 
 [node name="Health" type="TextureProgressBar" parent="."]
+visible = false
 offset_left = 9.0
 offset_top = 10.0
 offset_right = 107.0

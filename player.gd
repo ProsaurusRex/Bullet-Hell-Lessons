@@ -9,7 +9,7 @@ extends Area2D
 @export var bullet_manager: Node2D
 var bullet_cooldown = 0.2
 var time_since_firing = 0.0
-var bullet_count = 1.0  # Float, so it can be used in division
+var bullet_count = 3.0  # Float, so it can be used in division
 const MAX_BULLET_COUNT = 5.0
 
 # Variables

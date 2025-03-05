@@ -40,7 +40,7 @@ func create_boss():
 func increase_score(amount = 1):
 	score += amount
 	$Score.text = str(score)
-	if score >= 10 * boss_number and not boss_active:
+	if score >= 50 * boss_number and not boss_active:
 		boss_active = true
 		boss_number += 1
 		create_boss()
