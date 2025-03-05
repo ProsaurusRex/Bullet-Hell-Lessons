@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqaf11k5fl3f0"]
+[gd_scene load_steps=5 format=3 uid="uid://cqaf11k5fl3f0"]
 
 [ext_resource type="Script" path="res://Enemies/Boss/boss.gd" id="1_0vxhl"]
 [ext_resource type="Texture2D" uid="uid://rrrl60gd48c8" path="res://Sprites/Boss/body_02.png" id="1_nwqq2"]
 [ext_resource type="PackedScene" uid="uid://dcsm5vbijr6b" path="res://Enemies/Boss/boss_cannon.tscn" id="2_6crng"]
+[ext_resource type="PackedScene" uid="uid://bb0sdndp41qhg" path="res://Enemies/Boss/laser_turret.tscn" id="4_tn0jb"]
 
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_0vxhl")
@@ -18,3 +19,6 @@ position = Vector2(67, 0)
 
 [node name="BossCannon2" parent="Turrets" instance=ExtResource("2_6crng")]
 position = Vector2(1, 0)
+
+[node name="Laser" parent="Turrets" instance=ExtResource("4_tn0jb")]
+position = Vector2(-79, 0)

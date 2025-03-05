@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c16jahwoyxuxb"]
+[gd_scene load_steps=10 format=3 uid="uid://c16jahwoyxuxb"]
 
 [ext_resource type="PackedScene" uid="uid://srsshjpba14m" path="res://background.tscn" id="1_2toqg"]
 [ext_resource type="Script" path="res://main.gd" id="1_g6nal"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://bullet.tscn" id="4_rs8is"]
 [ext_resource type="Texture2D" uid="uid://c1naoplovwnwx" path="res://Sprites/empty_bar.png" id="4_vv5gn"]
 [ext_resource type="Texture2D" uid="uid://miky8mi4ni4l" path="res://Sprites/health_bar.png" id="5_ah4lj"]
+[ext_resource type="PackedScene" uid="uid://rb1fysp0kmp7" path="res://Enemies/laser_enemy.tscn" id="8_34gan"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u5r7a"]
 outline_size = 5
@@ -29,15 +30,22 @@ bullet_manager = NodePath("../Bullets")
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="LaserEnemy" parent="Enemies" node_paths=PackedStringArray("bullet_manager", "target") instance=ExtResource("8_34gan")]
+position = Vector2(60, -100)
+rotation = 1.5708
+bullet_manager = NodePath("../../Bullets")
+target = NodePath("../../Player")
+destination = Vector2(60, 100)
+
 [node name="Bullets" type="Node2D" parent="."]
 script = ExtResource("4_f8drj")
 
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="EnemyTimer" type="Timer" parent="Timers"]
+autostart = true
 
 [node name="Score" type="Label" parent="."]
-visible = false
 offset_left = 10.0
 offset_top = 8.0
 offset_right = 377.0
@@ -47,7 +55,6 @@ label_settings = SubResource("LabelSettings_u5r7a")
 horizontal_alignment = 2
 
 [node name="Health" type="TextureProgressBar" parent="."]
-visible = false
 offset_left = 9.0
 offset_top = 10.0
 offset_right = 107.0

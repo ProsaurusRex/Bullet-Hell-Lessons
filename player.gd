@@ -62,6 +62,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Bullet:
 		if not area.player_bullet:
 			take_damage()
-			area.queue_free()
+			if area is not Laser:
+				area.queue_free()
 	elif area is Enemy:
 		take_damage()

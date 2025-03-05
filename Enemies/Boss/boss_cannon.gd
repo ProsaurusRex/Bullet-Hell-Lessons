@@ -12,7 +12,7 @@ extends Area2D
 # Other variables
 var health = 10
 var rotation_speed = PI/4
-var bullet_cooldown = 0.5
+@export var bullet_cooldown = 0.5
 var time_since_firing = 0.0
 
 
@@ -24,10 +24,10 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(target):
 		look_at(target.position)
 		
-		time_since_firing += delta
-		if time_since_firing >= bullet_cooldown:
-			attack()
-			time_since_firing = 0
+	time_since_firing += delta
+	if time_since_firing >= bullet_cooldown:
+		attack()
+		time_since_firing = 0
 
 
 func attack():

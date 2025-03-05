@@ -1,7 +1,7 @@
 class_name Bullet
 extends Area2D
 
-var speed = 300
+@export var speed = 300
 var player_bullet = false
 
 signal on_hit
