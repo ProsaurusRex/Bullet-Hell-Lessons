@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var enemy = preload("res://Enemies/basic_enemy.tscn")
-#@onready var explosion = preload("res://explosion.tscn")
 
 var score = 0
 
@@ -28,7 +27,7 @@ func increase_score(amount = 1):
 	$Score.text = str(score)
 
 
-#func create_explosion(pos: Vector2):
-	#var new_explosion = explosion.instantiate()
-	#new_explosion.position = pos
-	#$Bullets.add_child(new_explosion)
+func _on_player_damage_taken(player: Player, amount: int) -> void:
+	$Health.value -= amount
+	if $Health.value <= 0:
+		player.destroyed()
