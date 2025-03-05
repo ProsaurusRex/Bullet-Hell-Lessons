@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c16jahwoyxuxb"]
+[gd_scene load_steps=9 format=3 uid="uid://c16jahwoyxuxb"]
 
 [ext_resource type="PackedScene" uid="uid://srsshjpba14m" path="res://background.tscn" id="1_2toqg"]
 [ext_resource type="Script" path="res://main.gd" id="1_g6nal"]
 [ext_resource type="PackedScene" uid="uid://qw62h74lvj51" path="res://player.tscn" id="2_4sqo1"]
 [ext_resource type="Script" path="res://bullet_manager.gd" id="4_f8drj"]
+[ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://bullet.tscn" id="4_rs8is"]
 [ext_resource type="Texture2D" uid="uid://c1naoplovwnwx" path="res://Sprites/empty_bar.png" id="4_vv5gn"]
 [ext_resource type="Texture2D" uid="uid://miky8mi4ni4l" path="res://Sprites/health_bar.png" id="5_ah4lj"]
 
@@ -23,6 +24,7 @@ zoom = Vector2(2, 2)
 [node name="Player" parent="." node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_4sqo1")]
 position = Vector2(199, 417)
 rotation = -1.5708
+bullet_scene = ExtResource("4_rs8is")
 bullet_manager = NodePath("../Bullets")
 
 [node name="Enemies" type="Node2D" parent="."]
