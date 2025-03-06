@@ -3,6 +3,7 @@ extends Node2D
 
 @export var bullet_manager: Node2D
 @export var target: Node2D
+@export var reward: PackedScene
 
 var number_of_turrets
 var initial_position
@@ -29,4 +30,7 @@ func _physics_process(delta: float) -> void:
 func turret_destroyed():
 	number_of_turrets -= 1
 	if number_of_turrets <= 0:
+		var new_reward = reward.instantiate()
+		new_reward.position = position
+		bullet_manager.add_child(new_reward)
 		queue_free()

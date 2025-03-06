@@ -2,7 +2,7 @@ class_name BulletManager
 extends Node2D
 
 @onready var explosion = preload("res://explosion.tscn")
-
+@export var medpack = preload("res://medpack.tscn")
 
 func create_explosion(pos: Vector2):
 	var new_explosion = explosion.instantiate()

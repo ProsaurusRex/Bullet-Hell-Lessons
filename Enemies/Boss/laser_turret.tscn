@@ -7,10 +7,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_g0rp6"]
 radius = 17.1172
 
-[node name="Laser" type="Area2D"]
+[node name="LaserTurret" type="Area2D"]
 script = ExtResource("1_jfwqa")
 bullet_scene = ExtResource("2_sds5o")
 bullet_cooldown = 5.0
+freeze_duration = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708

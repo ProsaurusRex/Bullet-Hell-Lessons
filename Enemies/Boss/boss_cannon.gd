@@ -8,12 +8,14 @@ extends Area2D
 @export var bullet_scene: PackedScene
 @export var bullet_manager: Node2D
 @export var target: Node2D
+@export var bullet_cooldown = 0.5
+@export var freeze_duration = 0.0
 
 # Other variables
 var health = 10
 var rotation_speed = PI/4
-@export var bullet_cooldown = 0.5
 var time_since_firing = 0.0
+var freeze_rotation = false
 
 
 func _ready() -> void:
@@ -21,7 +23,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_instance_valid(target):
+	if is_instance_valid(target) and not freeze_rotation:
 		look_at(target.position)
 		
 	time_since_firing += delta
@@ -31,10 +33,16 @@ func _physics_process(delta: float) -> void:
 
 
 func attack():
+	if freeze_duration > 0:
+		freeze_rotation = true
+		await get_tree().create_timer(freeze_duration).timeout
 	var new_bullet: Area2D = bullet_scene.instantiate()
 	new_bullet.transform = gun_marker.global_transform
 	new_bullet.modulate = Color("red")
 	bullet_manager.add_child(new_bullet)
+	#if freeze_duration > 0:
+		#await get_tree().create_timer(freeze_duration).timeout
+		#freeze_rotation = false
 
 
 func destroy():

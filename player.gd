@@ -9,7 +9,7 @@ extends Area2D
 @export var bullet_manager: Node2D
 var bullet_cooldown = 0.2
 var time_since_firing = 0.0
-var bullet_count = 3.0  # Float, so it can be used in division
+var bullet_count = 1.0  # Float, so it can be used in division
 const MAX_BULLET_COUNT = 5.0
 
 # Variables
@@ -31,8 +31,8 @@ func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 	
 	# Stop player going off-screen. Clamp takes a value, and fixes it within a certain range.
-	position.x = clamp(position.x, 0, 768)  
-	position.y = clamp(position.y, 0, 896)
+	position.x = clamp(position.x, 0, 768/2)  
+	position.y = clamp(position.y, 0, 896/2)
 	
 	time_since_firing += delta  # Count how long since we've fired in seconds
 	if Input.is_action_pressed(shoot) and time_since_firing >= bullet_cooldown:
@@ -66,3 +66,10 @@ func _on_area_entered(area: Area2D) -> void:
 				area.queue_free()
 	elif area is Enemy:
 		take_damage()
+	elif area is Powerup:
+		if bullet_count < MAX_BULLET_COUNT:
+			bullet_count += 1.0
+		area.queue_free()
+	elif area is Medpack:
+		damage_taken.emit(self, -1)
+		area.queue_free()

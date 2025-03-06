@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvjn13dvjnvvx"]
+
+[ext_resource type="Script" path="res://Enemies/turret_enemy.gd" id="1_4yr3i"]
+[ext_resource type="Texture2D" uid="uid://b54wka86aojap" path="res://Sprites/Boss/body_01a.png" id="1_hmq2s"]
+[ext_resource type="PackedScene" uid="uid://dcsm5vbijr6b" path="res://Enemies/Boss/boss_cannon.tscn" id="2_a7xko"]
+
+[node name="CannonEnemy" type="Node2D"]
+script = ExtResource("1_4yr3i")
+
+[node name="Body01a" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_hmq2s")
+
+[node name="BossCannon" parent="." instance=ExtResource("2_a7xko")]
+bullet_cooldown = 0.2

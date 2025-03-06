@@ -3,9 +3,11 @@ extends Node2D
 
 @export var bullet_manager: Node2D
 @export var target: Node2D
-@export var destination: Vector2
+@export var destination_array: Array[Vector2]
 @export var targetting = false
 
+var speed = 100
+var destination: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,8 +20,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if destination:
-		position = lerp(position, destination, 0.2)
+	if not destination_array.is_empty():
+		if position.distance_squared_to(destination_array[destination]) > 1:
+			position.x = move_toward(position.x, destination_array[destination].x, speed * delta)
+			position.y = move_toward(position.y, destination_array[destination].y, speed * delta)
+		else:
+			destination = (destination + 1) % len(destination_array)
 
 
 func turret_destroyed():
