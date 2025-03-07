@@ -5,6 +5,7 @@ extends Area2D
 @onready var gun_marker: Marker2D = $Marker2D
 
 # Variables for Bullets and Shooting
+@export var player_sprite: Texture = preload("res://Sprites/Ships/ship_0004.png")
 @export var bullet_scene: PackedScene
 @export var bullet_manager: Node2D
 var bullet_cooldown = 0.2
@@ -24,6 +25,10 @@ var speed = 200
 @export var shoot = "p1_shoot"
 
 signal damage_taken(player, amount)
+
+
+func _ready():
+	$Sprite2D.texture = player_sprite
 
 
 func _physics_process(delta: float) -> void:

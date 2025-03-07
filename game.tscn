@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c16jahwoyxuxb"]
+[gd_scene load_steps=10 format=3 uid="uid://c16jahwoyxuxb"]
 
 [ext_resource type="PackedScene" uid="uid://srsshjpba14m" path="res://background.tscn" id="1_2toqg"]
 [ext_resource type="Script" path="res://main.gd" id="1_g6nal"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://bullet.tscn" id="4_rs8is"]
 [ext_resource type="Texture2D" uid="uid://c1naoplovwnwx" path="res://Sprites/empty_bar.png" id="4_vv5gn"]
 [ext_resource type="Texture2D" uid="uid://miky8mi4ni4l" path="res://Sprites/health_bar.png" id="5_ah4lj"]
+[ext_resource type="Texture2D" uid="uid://42vjpci0pg3w" path="res://Sprites/Ships/ship_0006.png" id="5_bqg38"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u5r7a"]
 outline_size = 5
@@ -22,10 +23,22 @@ position = Vector2(192, 224)
 zoom = Vector2(2, 2)
 
 [node name="Player" parent="." node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_4sqo1")]
-position = Vector2(199, 417)
+position = Vector2(179, 417)
 rotation = -1.5708
 bullet_scene = ExtResource("4_rs8is")
 bullet_manager = NodePath("../Bullets")
+
+[node name="Player2" parent="." node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_4sqo1")]
+position = Vector2(237, 417)
+rotation = -1.5708
+player_sprite = ExtResource("5_bqg38")
+bullet_scene = ExtResource("4_rs8is")
+bullet_manager = NodePath("../Bullets")
+up = "p2_up"
+down = "p2_down"
+left = "p2_left"
+right = "p2_right"
+shoot = "p2_shoot"
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -58,4 +71,5 @@ texture_under = ExtResource("4_vv5gn")
 texture_progress = ExtResource("5_ah4lj")
 
 [connection signal="damage_taken" from="Player" to="." method="_on_player_damage_taken"]
+[connection signal="damage_taken" from="Player2" to="." method="_on_player_damage_taken"]
 [connection signal="timeout" from="Timers/EnemyTimer" to="." method="_on_enemy_timer_timeout"]
