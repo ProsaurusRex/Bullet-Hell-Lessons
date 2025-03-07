@@ -46,10 +46,10 @@ func _physics_process(delta: float) -> void:
 
 
 func attack():  # Shoot bullets
-	for i in range(bullet_count):
+	for x in range(bullet_count):
 		var new_bullet = bullet_scene.instantiate()
 		new_bullet.transform = gun_marker.global_transform  # Match the bullet's transform to the Marker2D
-		new_bullet.rotation += (bullet_count-1)/2 * PI/8 - i * PI/8  # Spread bullets over an angle of PI/8
+		new_bullet.rotation += (bullet_count-1)/2 * PI/8 - x * PI/8  # Spread bullets by an angle of PI/8
 		new_bullet.player_bullet = true  # This is a player's bullet
 		new_bullet.connect("on_hit", bullet_manager.create_explosion)
 		bullet_manager.add_child(new_bullet)

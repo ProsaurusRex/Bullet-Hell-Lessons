@@ -1,24 +1,36 @@
 extends Node2D
 
-@onready var enemy = preload("res://Enemies/basic_enemy.tscn")
+@onready var enemy_scene = preload("res://Enemies/basic_enemy.tscn")
 @onready var boss_scene = preload("res://Enemies/Boss/boss.tscn")
 
 var score = 0
 var boss_active = false
 var boss_number = 1
 
+var enemy_spacing = 32
+var new_enemy_pos_x = enemy_spacing
+
 
 func _on_enemy_timer_timeout() -> void:
 	if not boss_active:
-		var wing_pos_x = randi_range(3, 9) * 32
-		create_enemy(Vector2(wing_pos_x, -20))
-		for i in range(1, 3):
-			create_enemy(Vector2(wing_pos_x + i * 32, -20 - 32 * i))
-			create_enemy(Vector2(wing_pos_x - i * 32, -20 - 32 * i))
-		#create_enemy(Vector2(randi_range(0, 448), -20))
+		create_enemy(Vector2(randi_range(16, 768/2 - 16), -20))
+		
+		### WING PATTERN ###
+		#var wing_pos_x = randi_range(3, 9) * 32
+		#create_enemy(Vector2(wing_pos_x, -20))
+		#for i in range(1, 3):
+			#create_enemy(Vector2(wing_pos_x + i * 32, -20 - 32 * i))
+			#create_enemy(Vector2(wing_pos_x - i * 32, -20 - 32 * i))
+		
+		### WAVE PATTERN ###
+		#create_enemy(Vector2(new_enemy_pos_x, -20))
+		#create_enemy(Vector2(768/2 - 64 - new_enemy_pos_x, -20))
+		#new_enemy_pos_x += enemy_spacing
+		#if new_enemy_pos_x > 768/4 - enemy_spacing:
+			#new_enemy_pos_x = enemy_spacing
 
 
-func create_enemy(pos, e = enemy):
+func create_enemy(pos, e = enemy_scene):
 	var new_enemy = e.instantiate()
 	new_enemy.position = pos
 	new_enemy.bullet_manager = $Bullets
