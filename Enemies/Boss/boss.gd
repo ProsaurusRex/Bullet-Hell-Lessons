@@ -4,6 +4,7 @@ extends Node2D
 @export var bullet_manager: Node2D
 @export var target: Node2D
 @export var reward: PackedScene
+@export var health_per_turret: int = 10
 
 var number_of_turrets
 var initial_position
@@ -18,6 +19,7 @@ func _ready() -> void:
 	for t: Turret in $Turrets.get_children():
 		t.bullet_manager = bullet_manager
 		t.target = target
+		t.health = health_per_turret
 		t.connect("tree_exiting", turret_destroyed)
 
 

@@ -39,10 +39,12 @@ func attack():
 	var new_bullet: Area2D = bullet_scene.instantiate()
 	new_bullet.transform = gun_marker.global_transform
 	new_bullet.modulate = Color("red")
+	if new_bullet.has_method("set_target"):
+		new_bullet.set_target(target)
 	bullet_manager.add_child(new_bullet)
-	#if freeze_duration > 0:
-		#await get_tree().create_timer(freeze_duration).timeout
-		#freeze_rotation = false
+	if freeze_duration > 0:
+		await get_tree().create_timer(freeze_duration).timeout
+		freeze_rotation = false
 
 
 func destroy():

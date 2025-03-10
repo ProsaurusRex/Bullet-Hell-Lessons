@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_41p4d"]
 [ext_resource type="Texture2D" uid="uid://bu8hcjk10jv7k" path="res://Sprites/Ships/ship_0009.png" id="2_3r5xo"]
-[ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://bullet.tscn" id="2_y3wdt"]
+[ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://Projectiles/bullet.tscn" id="2_y3wdt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_037ug"]
 radius = 5.0

@@ -17,7 +17,7 @@ var bullet_cooldown = 1.0
 var time_since_firing = 0
 
 # Signals
-signal destroyed
+signal destroyed(pos)
 
 
 func _physics_process(delta: float) -> void:
@@ -40,7 +40,7 @@ func attack():
 func _on_area_entered(area: Area2D) -> void:
 	if area is Bullet:
 		if area.player_bullet:
-			destroyed.emit()  # Let the game know we're dead
+			destroyed.emit(position)  # Let the game know we're dead
 			area.queue_free()  # Delete the bullet
 			queue_free()
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Enemies/Boss/boss_cannon.gd" id="1_jfwqa"]
 [ext_resource type="Texture2D" uid="uid://dautag3fckx5" path="res://Sprites/Boss/Weapons/Medium/Plasma/turret_04_mk2.png" id="1_uam1g"]
-[ext_resource type="PackedScene" uid="uid://dkpygpwn184yk" path="res://laser.tscn" id="2_sds5o"]
+[ext_resource type="PackedScene" uid="uid://dkpygpwn184yk" path="res://Projectiles/laser.tscn" id="2_sds5o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g0rp6"]
 radius = 17.1172

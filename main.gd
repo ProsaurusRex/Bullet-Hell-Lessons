@@ -1,7 +1,10 @@
 extends Node2D
 
+@export var reward: PackedScene
+
 @onready var enemy_scene = preload("res://Enemies/enemy.tscn")
-@onready var boss_scene = preload("res://Enemies/Boss/boss.tscn")
+@onready var boss_scenes = [preload("res://Enemies/Boss/boss_easy.tscn"),
+							preload("res://Enemies/Boss/boss_hard.tscn")]
 
 var score = 0
 var boss_active = false
@@ -39,23 +42,28 @@ func create_enemy(pos, e = enemy_scene):
 
 
 func create_boss():
-	var new_boss = boss_scene.instantiate()
+	var new_boss = boss_scenes[boss_number % len(boss_scenes)].instantiate()
 	new_boss.position = Vector2(224, -200)
 	new_boss.bullet_manager = $Bullets
 	new_boss.target = $Player
+	new_boss.health_per_turret = 5 + 5 * boss_number
 	new_boss.connect("tree_exiting", func(): boss_active = false)
 	$Enemies.add_child.call_deferred(new_boss)
 	var tween = create_tween()
-	tween.tween_property(new_boss, "position:y", 200, 5.0)
+	tween.tween_property(new_boss, "position:y", 150, 5.0)
 
 
-func increase_score(amount = 1):
+func increase_score(pos, amount = 1):
 	score += amount
 	$Score.text = str(score)
-	if score >= 50 * boss_number and not boss_active:
+	if score >= 10 * boss_number and not boss_active:
 		boss_active = true
 		boss_number += 1
 		create_boss()
+	if randf() < 0.1:
+		var new_reward = reward.instantiate()
+		new_reward.position = pos
+		$Bullets.add_child.call_deferred(new_reward)
 
 
 func _on_player_damage_taken(player: Player, amount: int) -> void:

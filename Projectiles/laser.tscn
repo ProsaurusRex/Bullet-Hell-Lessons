@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dkpygpwn184yk"]
 
-[ext_resource type="Script" path="res://laser.gd" id="1_5lnqi"]
+[ext_resource type="Script" path="res://Projectiles/laser.gd" id="1_5lnqi"]
 [ext_resource type="Texture2D" uid="uid://wk0l0pmp5eid" path="res://Sprites/Boss/Weapons/Small/Laser/turret_02_beam_01_anim.png" id="1_sfvjf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fff3v"]
