@@ -69,12 +69,15 @@ func _on_area_entered(area: Area2D) -> void:
 			take_damage()
 			if area is not Laser:
 				area.queue_free()
+	
 	elif area is Enemy:
 		take_damage()
+	
 	elif area is Powerup:
 		if bullet_count < MAX_BULLET_COUNT:
 			bullet_count += 1.0
 		area.queue_free()
+	
 	elif area is Medpack:
 		damage_taken.emit(self, -1)
 		area.queue_free()

@@ -33,13 +33,17 @@ func _physics_process(delta: float) -> void:
 func attack():
 	var new_bullet: Area2D = bullet_scene.instantiate()
 	new_bullet.transform = gun_marker.global_transform
-	new_bullet.modulate = Color("red")
+	new_bullet.modulate = Color("red")  # Tint bullets red
 	bullet_manager.add_child(new_bullet)
 
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Bullet:
 		if area.player_bullet:
-			destroyed.emit()
-			area.queue_free()
+			destroyed.emit()  # Let the game know we're dead
+			area.queue_free()  # Delete the bullet
 			queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

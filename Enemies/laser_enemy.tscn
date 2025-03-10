@@ -12,4 +12,3 @@ rotation = 1.5708
 texture = ExtResource("1_l27l0")
 
 [node name="Turret" parent="." instance=ExtResource("2_1enx6")]
-freeze_duration = 0.5

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c16jahwoyxuxb"]
 
 [ext_resource type="PackedScene" uid="uid://srsshjpba14m" path="res://background.tscn" id="1_2toqg"]
-[ext_resource type="Script" path="res://main.gd" id="1_g6nal"]
+[ext_resource type="Script" path="res://main_progress.gd" id="1_kgq4d"]
 [ext_resource type="PackedScene" uid="uid://qw62h74lvj51" path="res://player.tscn" id="2_4sqo1"]
 [ext_resource type="Script" path="res://bullet_manager.gd" id="4_f8drj"]
 [ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://bullet.tscn" id="4_rs8is"]
@@ -13,7 +13,7 @@ outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_g6nal")
+script = ExtResource("1_kgq4d")
 
 [node name="Background" parent="." instance=ExtResource("1_2toqg")]
 

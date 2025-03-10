@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var enemy_scene = preload("res://Enemies/basic_enemy.tscn")
+@onready var enemy_scene = preload("res://Enemies/enemy.tscn")
 @onready var boss_scene = preload("res://Enemies/Boss/boss.tscn")
 
 var score = 0

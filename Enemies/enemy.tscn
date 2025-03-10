@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0gltcelhu3xg"]
+
+[ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_41p4d"]
+[ext_resource type="Texture2D" uid="uid://bu8hcjk10jv7k" path="res://Sprites/Ships/ship_0009.png" id="2_3r5xo"]
+[ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://bullet.tscn" id="2_y3wdt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_037ug"]
+radius = 5.0
+height = 20.0
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_41p4d")
+bullet_scene = ExtResource("2_y3wdt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_3r5xo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_037ug")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(7, 0)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, 0)
+scale = Vector2(0.65, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
