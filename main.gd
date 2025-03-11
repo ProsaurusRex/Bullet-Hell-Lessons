@@ -2,7 +2,8 @@ extends Node2D
 
 @export var reward: PackedScene
 
-@onready var enemy_scene = preload("res://Enemies/enemy.tscn")
+@onready var enemy_scenes = [preload("res://Enemies/enemy.tscn"),
+							preload("res://Enemies/seeker.tscn")]
 @onready var boss_scenes = [preload("res://Enemies/Boss/boss_easy.tscn"),
 							preload("res://Enemies/Boss/boss_hard.tscn")]
 
@@ -12,11 +13,16 @@ var boss_number = 1
 
 var enemy_spacing = 32
 var new_enemy_pos_x = enemy_spacing
+var enemy_number = 1
 
 
 func _on_enemy_timer_timeout() -> void:
 	if not boss_active:
-		create_enemy(Vector2(randi_range(16, 768/2 - 16), -20))
+		if enemy_number % 5 == 0:
+			create_enemy(Vector2(randi_range(16, 768/2 - 16), -20), enemy_scenes[1])
+		else:
+			create_enemy(Vector2(randi_range(16, 768/2 - 16), -20))
+		enemy_number += 1
 		
 		### WING PATTERN ###
 		#var wing_pos_x = randi_range(3, 9) * 32
@@ -33,11 +39,13 @@ func _on_enemy_timer_timeout() -> void:
 			#new_enemy_pos_x = enemy_spacing
 
 
-func create_enemy(pos, e = enemy_scene):
+func create_enemy(pos, e = enemy_scenes[0]):
 	var new_enemy = e.instantiate()
 	new_enemy.position = pos
 	new_enemy.bullet_manager = $Bullets
 	new_enemy.connect("destroyed", increase_score)
+	if new_enemy.has_method("set_target"):
+		new_enemy.set_target($Player)
 	$Enemies.add_child(new_enemy)
 
 

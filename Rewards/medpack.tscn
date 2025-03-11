@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0bogr3ahv2t5"]
 
-[ext_resource type="Script" path="res://medpack.gd" id="1_si5nq"]
+[ext_resource type="Script" path="res://Rewards/medpack.gd" id="1_si5nq"]
 [ext_resource type="Texture2D" uid="uid://6uo0gjiirekk" path="res://Sprites/Background/tileset.png" id="1_twknu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0ksu"]
