@@ -6,10 +6,11 @@ var turn_speed = PI/4
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(target):
 		var target_direction = position.direction_to(target.position)
-		if transform.x.cross(target_direction) > 0:
-			direction = direction.rotated(turn_speed * delta)
-		else:
-			direction = direction.rotated(-turn_speed * delta)
+		direction = direction.rotated(transform.x.cross(target_direction) * turn_speed * delta)
+		#if transform.x.cross(target_direction) > 0:
+			#direction = direction.rotated(turn_speed * delta)
+		#else:
+			#direction = direction.rotated(-turn_speed * delta)
 	super._physics_process(delta)
 
 

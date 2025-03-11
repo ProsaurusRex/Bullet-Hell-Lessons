@@ -13,6 +13,10 @@ var time_since_firing = 0.0
 var bullet_count = 1.0  # Float, so it can be used in division
 const MAX_BULLET_COUNT = 5.0
 
+# Special
+@export var special_projectile: PackedScene
+var special_ammo = 10
+
 # Variables
 var speed = 200
 
@@ -43,6 +47,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed(shoot) and time_since_firing >= bullet_cooldown:
 		attack()
 		time_since_firing = 0
+	
+	if Input.is_action_just_pressed("p1_special") and special_ammo > 0:
+		pass
 
 
 func attack():  # Shoot bullets
