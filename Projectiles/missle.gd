@@ -5,13 +5,14 @@ var turn_speed = 3 * PI/4
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(target):
-		var target_direction = position.direction_to(target.position)
+		var target_direction = position.direction_to(target.global_position)
 		rotation += transform.x.cross(target_direction) * turn_speed * delta
 
 	super._physics_process(delta)
 	if speed <= 500:
 		speed += 500 * delta
-		turn_speed -= PI/2 * delta
+		if not player_bullet:
+			turn_speed -= PI/2 * delta
 
 
 func set_target(new_target):

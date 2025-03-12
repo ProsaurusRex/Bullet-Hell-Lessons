@@ -15,7 +15,7 @@ const MAX_BULLET_COUNT = 5.0
 
 # Special
 @export var special_projectile: PackedScene
-var special_ammo = 10
+var special_ammo = 5
 
 # Variables
 var speed = 200
@@ -29,9 +29,11 @@ var speed = 200
 @export var shoot = "p1_shoot"
 
 signal damage_taken(player, amount)
+signal ammo_changed(new_total)
 
 
 func _ready():
+	ammo_changed.emit(special_ammo)
 	$Sprite2D.texture = player_sprite
 
 
@@ -49,7 +51,7 @@ func _physics_process(delta: float) -> void:
 		time_since_firing = 0
 	
 	if Input.is_action_just_pressed("p1_special") and special_ammo > 0:
-		pass
+		special()
 
 
 func attack():  # Shoot bullets
@@ -60,6 +62,29 @@ func attack():  # Shoot bullets
 		new_bullet.player_bullet = true  # This is a player's bullet
 		new_bullet.connect("on_hit", bullet_manager.create_explosion)
 		bullet_manager.add_child(new_bullet)
+
+
+func special():
+	var enemy_targets = get_tree().get_nodes_in_group("Enemy")
+	var target_index = 0
+	while special_ammo > 0 and enemy_targets:
+		special_ammo -= 1
+		ammo_changed.emit(special_ammo)
+		time_since_firing = 0.0
+		gun_marker.rotation = (randf() - 0.5) * 3*PI/4
+		
+		var new_bullet = special_projectile.instantiate()
+		new_bullet.transform = gun_marker.global_transform  # Match the bullet's transform to the Marker2D
+		new_bullet.player_bullet = true  # This is a player's bullet
+		new_bullet.connect("on_hit", bullet_manager.create_explosion)
+		if new_bullet.has_method("set_target"):
+			new_bullet.set_target(enemy_targets[target_index])
+			target_index = (target_index + 1) % len(enemy_targets)
+		bullet_manager.add_child(new_bullet)
+		
+		await get_tree().create_timer(0.1).timeout
+	
+	gun_marker.rotation = 0
 
 
 func take_damage(amount = 1):
@@ -83,8 +108,15 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area is Powerup:
 		if bullet_count < MAX_BULLET_COUNT:
 			bullet_count += 1.0
+		special_ammo += 10
+		ammo_changed.emit(special_ammo)
 		area.queue_free()
 	
 	elif area is Medpack:
 		damage_taken.emit(self, -1)
+		area.queue_free()
+	
+	elif area is SpecialAmmo:
+		special_ammo += 3
+		ammo_changed.emit(special_ammo)
 		area.queue_free()

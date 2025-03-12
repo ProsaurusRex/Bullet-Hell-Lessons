@@ -21,6 +21,10 @@ window/size/viewport_width=768
 window/size/viewport_height=896
 window/size/resizable=false
 
+[global_group]
+
+Enemy=""
+
 [input]
 
 p1_left={
