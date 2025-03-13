@@ -1,7 +1,7 @@
 extends Bullet
 
 var target: Node2D
-var turn_speed = 3 * PI/4
+var turn_speed = 3 * PI/4  # rotation per second, in radians
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(target):

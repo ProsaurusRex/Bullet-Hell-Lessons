@@ -68,6 +68,7 @@ func special():
 	var enemy_targets = get_tree().get_nodes_in_group("Enemy")
 	var target_index = 0
 	while special_ammo > 0 and enemy_targets:
+		enemy_targets = get_tree().get_nodes_in_group("Enemy")
 		special_ammo -= 1
 		ammo_changed.emit(special_ammo)
 		time_since_firing = 0.0
