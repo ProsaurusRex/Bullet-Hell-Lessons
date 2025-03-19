@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var reward: PackedScene
+@export var rewards: Array[PackedScene]
 
 @onready var enemy_scenes = [preload("res://Enemies/enemy.tscn"),
 							preload("res://Enemies/seeker.tscn")]
@@ -54,7 +54,7 @@ func create_boss():
 	new_boss.position = Vector2(224, -200)
 	new_boss.bullet_manager = $Bullets
 	new_boss.target = $Player
-	new_boss.health_per_turret = 5 + 5 * boss_number
+	new_boss.health_per_turret = 5 * boss_number
 	new_boss.connect("tree_exiting", func(): boss_active = false)
 	$Enemies.add_child.call_deferred(new_boss)
 	var tween = create_tween()
@@ -69,7 +69,7 @@ func increase_score(pos, amount = 1):
 		boss_number += 1
 		create_boss()
 	if randf() < 0.1:
-		var new_reward = reward.instantiate()
+		var new_reward = rewards[randi() % len(rewards)].instantiate()
 		new_reward.position = pos
 		$Bullets.add_child.call_deferred(new_reward)
 
@@ -78,3 +78,7 @@ func _on_player_damage_taken(player: Player, amount: int) -> void:
 	$Health.value -= amount
 	if $Health.value <= 0:
 		player.destroyed()
+
+
+func _on_player_ammo_changed(new_total: int) -> void:
+	$SpecialAmmo.text = str(new_total)
