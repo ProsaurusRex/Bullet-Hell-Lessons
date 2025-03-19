@@ -34,6 +34,7 @@ func attack():
 	var new_bullet: Area2D = bullet_scene.instantiate()
 	new_bullet.transform = gun_marker.global_transform
 	new_bullet.modulate = Color("red")  # Tint bullets red
+	new_bullet.connect("on_hit", bullet_manager.create_explosion)
 	bullet_manager.add_child(new_bullet)
 
 

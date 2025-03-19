@@ -80,10 +80,10 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area is Enemy:
 		take_damage()
 	
-	elif area is Powerup:
-		if bullet_count < MAX_BULLET_COUNT:
-			bullet_count += 1.0
-		area.queue_free()
+	#elif area is Powerup:
+		#if bullet_count < MAX_BULLET_COUNT:
+			#bullet_count += 1.0
+		#area.queue_free()
 	
 	elif area is Medpack:
 		damage_taken.emit(self, -1)

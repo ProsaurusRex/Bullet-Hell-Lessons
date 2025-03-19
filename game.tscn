@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://srsshjpba14m" path="res://background.tscn" id="1_2toqg"]
 [ext_resource type="Script" path="res://main.gd" id="1_uctw1"]
 [ext_resource type="PackedScene" uid="uid://qw62h74lvj51" path="res://player.tscn" id="2_4sqo1"]
-[ext_resource type="PackedScene" uid="uid://c0bogr3ahv2t5" path="res://Rewards/medpack.tscn" id="2_pp23p"]
+[ext_resource type="PackedScene" uid="uid://bu4cmfjtib3xl" path="res://Rewards/powerup alt.tscn" id="2_hi51x"]
 [ext_resource type="Script" path="res://bullet_manager.gd" id="4_f8drj"]
 [ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://Projectiles/bullet.tscn" id="4_rs8is"]
 [ext_resource type="Texture2D" uid="uid://c1naoplovwnwx" path="res://Sprites/empty_bar.png" id="4_vv5gn"]
@@ -15,7 +15,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uctw1")
-reward = ExtResource("2_pp23p")
+reward = ExtResource("2_hi51x")
 
 [node name="Background" parent="." instance=ExtResource("1_2toqg")]
 

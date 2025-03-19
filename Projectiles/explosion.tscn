@@ -3,43 +3,43 @@
 [ext_resource type="Texture2D" uid="uid://6uo0gjiirekk" path="res://Sprites/Background/tileset.png" id="1_6s0ur"]
 [ext_resource type="Script" path="res://Projectiles/explosion.gd" id="2_ga7ah"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sjntl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1vfa"]
 atlas = ExtResource("1_6s0ur")
-region = Rect2(64, 0, 16, 13)
+region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5xjqf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2llro"]
 atlas = ExtResource("1_6s0ur")
-region = Rect2(80, 0, 16, 13)
+region = Rect2(80, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8syy0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucjkm"]
 atlas = ExtResource("1_6s0ur")
-region = Rect2(96, 0, 16, 13)
+region = Rect2(96, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gnys1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e25n"]
 atlas = ExtResource("1_6s0ur")
-region = Rect2(112, 0, 16, 13)
+region = Rect2(112, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vymuu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_khstu"]
 atlas = ExtResource("1_6s0ur")
-region = Rect2(128, 0, 16, 13)
+region = Rect2(128, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_35ebh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sjntl")
+"texture": SubResource("AtlasTexture_u1vfa")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5xjqf")
+"texture": SubResource("AtlasTexture_2llro")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8syy0")
+"texture": SubResource("AtlasTexture_ucjkm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gnys1")
+"texture": SubResource("AtlasTexture_0e25n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vymuu")
+"texture": SubResource("AtlasTexture_khstu")
 }, {
 "duration": 1.0,
 "texture": null
