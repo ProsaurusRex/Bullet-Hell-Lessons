@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cawt675c1onug"]
+
+[ext_resource type="PackedScene" uid="uid://cqaf11k5fl3f0" path="res://Enemies/Boss/boss.tscn" id="1_7wki4"]
+[ext_resource type="Texture2D" uid="uid://dvdhptihix43i" path="res://Sprites/Boss/body_03.png" id="2_tw1j8"]
+[ext_resource type="Texture2D" uid="uid://cl32e1lvcshd0" path="res://Sprites/Boss/body_01b.png" id="3_y85kb"]
+[ext_resource type="PackedScene" uid="uid://jqrqsimgk5kg" path="res://Enemies/Boss/missle_turret.tscn" id="4_wbrat"]
+[ext_resource type="PackedScene" uid="uid://dcsm5vbijr6b" path="res://Enemies/Boss/boss_cannon.tscn" id="5_8nimt"]
+
+[node name="Boss" instance=ExtResource("1_7wki4")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_tw1j8")
+
+[node name="Body01b" type="Sprite2D" parent="Sprite2D" index="0"]
+position = Vector2(-41, 12)
+texture = ExtResource("3_y85kb")
+
+[node name="Body01b2" type="Sprite2D" parent="Sprite2D" index="1"]
+position = Vector2(41, 11.9997)
+texture = ExtResource("3_y85kb")
+
+[node name="BossCannon" parent="Turrets" index="0" instance=ExtResource("4_wbrat")]
+position = Vector2(71, 0)
+
+[node name="BossCannon2" parent="Turrets" index="1" instance=ExtResource("5_8nimt")]
+position = Vector2(-9, -41)
+
+[node name="BossCannon3" parent="Turrets" index="2" instance=ExtResource("5_8nimt")]
+position = Vector2(-9, 0)
+
+[node name="BossCannon4" parent="Turrets" index="3" instance=ExtResource("5_8nimt")]
+position = Vector2(-9, 41)

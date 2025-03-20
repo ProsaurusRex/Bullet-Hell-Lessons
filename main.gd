@@ -5,11 +5,12 @@ extends Node2D
 @onready var enemy_scenes = [preload("res://Enemies/enemy.tscn"),
 							preload("res://Enemies/seeker.tscn")]
 @onready var boss_scenes = [preload("res://Enemies/Boss/boss_easy.tscn"),
+							preload("res://Enemies/Boss/boss_medium.tscn"),
 							preload("res://Enemies/Boss/boss_hard.tscn")]
 
 var score = 0
 var boss_active = false
-var boss_number = 1
+var boss_number = 0
 
 var enemy_spacing = 32
 var new_enemy_pos_x = enemy_spacing
@@ -54,7 +55,7 @@ func create_boss():
 	new_boss.position = Vector2(224, -200)
 	new_boss.bullet_manager = $Bullets
 	new_boss.target = $Player
-	new_boss.health_per_turret = 5 * boss_number
+	new_boss.health_per_turret = 5 * (boss_number + 1)
 	new_boss.connect("tree_exiting", func(): boss_active = false)
 	$Enemies.add_child.call_deferred(new_boss)
 	var tween = create_tween()
@@ -64,11 +65,11 @@ func create_boss():
 func increase_score(pos, amount = 1):
 	score += amount
 	$Score.text = str(score)
-	if score >= 10 * boss_number and not boss_active:
+	if score >= 10 * (boss_number + 1) and not boss_active:
 		boss_active = true
-		boss_number += 1
 		create_boss()
-	if randf() < 0.1:
+		boss_number += 1
+	if randf() < 0.2:
 		var new_reward = rewards[randi() % len(rewards)].instantiate()
 		new_reward.position = pos
 		$Bullets.add_child.call_deferred(new_reward)

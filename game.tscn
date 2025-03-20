@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://c16jahwoyxuxb"]
+[gd_scene load_steps=11 format=3 uid="uid://c16jahwoyxuxb"]
 
 [ext_resource type="PackedScene" uid="uid://srsshjpba14m" path="res://background.tscn" id="1_2toqg"]
 [ext_resource type="Script" path="res://main.gd" id="1_uctw1"]
 [ext_resource type="PackedScene" uid="uid://qw62h74lvj51" path="res://player.tscn" id="2_4sqo1"]
-[ext_resource type="PackedScene" uid="uid://bu4cmfjtib3xl" path="res://Rewards/powerup alt.tscn" id="2_hi51x"]
+[ext_resource type="PackedScene" uid="uid://c0bogr3ahv2t5" path="res://Rewards/medpack.tscn" id="2_da51v"]
+[ext_resource type="PackedScene" uid="uid://dspaf1de0h450" path="res://Rewards/missile_powerup.tscn" id="3_a4cj7"]
 [ext_resource type="Script" path="res://bullet_manager.gd" id="4_f8drj"]
-[ext_resource type="PackedScene" uid="uid://bnoywjb27d21m" path="res://Projectiles/bullet.tscn" id="4_rs8is"]
+[ext_resource type="PackedScene" uid="uid://b4e344y6p275v" path="res://Rewards/rapidfire_powerup.tscn" id="4_vgsqn"]
 [ext_resource type="Texture2D" uid="uid://c1naoplovwnwx" path="res://Sprites/empty_bar.png" id="4_vv5gn"]
 [ext_resource type="Texture2D" uid="uid://miky8mi4ni4l" path="res://Sprites/health_bar.png" id="5_ah4lj"]
 
@@ -15,7 +16,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uctw1")
-reward = ExtResource("2_hi51x")
+rewards = Array[PackedScene]([ExtResource("2_da51v"), ExtResource("3_a4cj7"), ExtResource("4_vgsqn")])
 
 [node name="Background" parent="." instance=ExtResource("1_2toqg")]
 
@@ -23,16 +24,15 @@ reward = ExtResource("2_hi51x")
 position = Vector2(192, 224)
 zoom = Vector2(2, 2)
 
-[node name="Player" parent="." node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_4sqo1")]
-position = Vector2(179, 417)
-rotation = -1.5708
-bullet_scene = ExtResource("4_rs8is")
-bullet_manager = NodePath("../Bullets")
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Bullets" type="Node2D" parent="."]
 script = ExtResource("4_f8drj")
+
+[node name="Player" parent="." node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_4sqo1")]
+position = Vector2(179, 417)
+rotation = -1.5708
+bullet_manager = NodePath("../Bullets")
 
 [node name="Timers" type="Node2D" parent="."]
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqaf11k5fl3f0"]
 
 [ext_resource type="Script" path="res://Enemies/Boss/boss.gd" id="1_0vxhl"]
-[ext_resource type="PackedScene" uid="uid://lajra1vhadhc" path="res://Rewards/powerup.tscn" id="2_fj8ig"]
+[ext_resource type="PackedScene" uid="uid://bu4cmfjtib3xl" path="res://Rewards/powerup alt.tscn" id="2_kbyx8"]
 
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_0vxhl")
-reward = ExtResource("2_fj8ig")
+reward = ExtResource("2_kbyx8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708

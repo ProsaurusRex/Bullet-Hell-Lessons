@@ -59,6 +59,11 @@ func attack():  # Shoot bullets
 		new_bullet.rotation += (bullet_count-1)/2 * PI/8 - x * PI/8  # Spread bullets by an angle of PI/8
 		new_bullet.player_bullet = true  # This is a player's bullet
 		new_bullet.connect("on_hit", bullet_manager.create_explosion)
+		if new_bullet.has_method("set_target"):
+			new_bullet.target = self
+			for e in get_tree().get_nodes_in_group("Enemy"):
+				if position.distance_squared_to(e.global_position) > position.distance_squared_to(new_bullet.target.position):
+					new_bullet.target = e
 		bullet_manager.add_child(new_bullet)
 
 
@@ -79,12 +84,3 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	elif area is Enemy:
 		take_damage()
-	
-	#elif area is Powerup:
-		#if bullet_count < MAX_BULLET_COUNT:
-			#bullet_count += 1.0
-		#area.queue_free()
-	
-	elif area is Medpack:
-		damage_taken.emit(self, -1)
-		area.queue_free()
