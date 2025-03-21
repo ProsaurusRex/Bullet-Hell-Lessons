@@ -7,6 +7,7 @@ extends Area2D
 # Variables for Bullets and Shooting
 @export var player_sprite: Texture = preload("res://Sprites/Ships/ship_0004.png")
 @export var bullet_scene: PackedScene
+@onready var standard_ammo = bullet_scene
 @export var bullet_manager: Node2D
 var bullet_cooldown = 0.2
 var time_since_firing = 0.0

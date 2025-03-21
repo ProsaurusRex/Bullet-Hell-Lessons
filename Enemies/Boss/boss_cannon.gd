@@ -55,6 +55,7 @@ func _on_area_entered(area):
 	if area is Bullet:
 		if area.player_bullet:
 			health -= 1
-			area.queue_free()
+			if area is not Laser:
+				area.queue_free()
 			if health <= 0:
 				destroy()

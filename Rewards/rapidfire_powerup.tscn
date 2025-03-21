@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4e344y6p275v"]
 
-[ext_resource type="PackedScene" uid="uid://bu4cmfjtib3xl" path="res://Rewards/powerup alt.tscn" id="1_nrkjj"]
+[ext_resource type="PackedScene" uid="uid://bu4cmfjtib3xl" path="res://Rewards/powerup.tscn" id="1_nrkjj"]
 [ext_resource type="Script" path="res://Rewards/rapid_fire_powerup.gd" id="2_50r8s"]
 
 [node name="Powerup" instance=ExtResource("1_nrkjj")]

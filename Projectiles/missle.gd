@@ -23,5 +23,6 @@ func set_target(new_target):
 func _on_area_entered(area: Area2D) -> void:
 	if area is Bullet:
 		if area.player_bullet != player_bullet:
-			area.queue_free()
+			if area is not Laser:
+				area.queue_free()
 			queue_free()

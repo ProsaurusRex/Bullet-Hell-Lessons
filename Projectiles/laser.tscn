@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfma5"]
-size = Vector2(1280, 8)
+size = Vector2(1280, 16)
 
 [node name="Laser" type="Area2D"]
 script = ExtResource("1_5lnqi")
@@ -56,7 +56,7 @@ speed = 0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(640, 0)
 rotation = 1.5708
-scale = Vector2(2, 40)
+scale = Vector2(4, 40)
 sprite_frames = SubResource("SpriteFrames_1iv6w")
 autoplay = "default"
 speed_scale = 2.0

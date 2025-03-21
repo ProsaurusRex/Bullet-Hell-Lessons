@@ -42,7 +42,8 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Bullet:
 		if area.player_bullet:
 			destroyed.emit(position)  # Let the game know we're dead
-			area.queue_free()  # Delete the bullet
+			if area is not Laser:
+				area.queue_free()  # Delete the bullet
 			queue_free()
 
 

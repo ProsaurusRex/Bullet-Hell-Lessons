@@ -65,11 +65,13 @@ func create_boss():
 func increase_score(pos, amount = 1):
 	score += amount
 	$Score.text = str(score)
-	if score >= 10 * (boss_number + 1) and not boss_active:
+	if score >= 20 * (boss_number ** 2 + 1) and not boss_active:
 		boss_active = true
 		create_boss()
 		boss_number += 1
-	if randf() < 0.2:
+		if $Timers/EnemyTimer.wait_time > 0.1:
+			$Timers/EnemyTimer.wait_time -= 0.1
+	if randf() < 0.1:
 		var new_reward = rewards[randi() % len(rewards)].instantiate()
 		new_reward.position = pos
 		$Bullets.add_child.call_deferred(new_reward)

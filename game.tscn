@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c16jahwoyxuxb"]
+[gd_scene load_steps=12 format=3 uid="uid://c16jahwoyxuxb"]
 
 [ext_resource type="PackedScene" uid="uid://srsshjpba14m" path="res://background.tscn" id="1_2toqg"]
 [ext_resource type="Script" path="res://main.gd" id="1_uctw1"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b4e344y6p275v" path="res://Rewards/rapidfire_powerup.tscn" id="4_vgsqn"]
 [ext_resource type="Texture2D" uid="uid://c1naoplovwnwx" path="res://Sprites/empty_bar.png" id="4_vv5gn"]
 [ext_resource type="Texture2D" uid="uid://miky8mi4ni4l" path="res://Sprites/health_bar.png" id="5_ah4lj"]
+[ext_resource type="PackedScene" uid="uid://bku4q7v70b2vr" path="res://Rewards/laser_powerup.tscn" id="5_im7fe"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u5r7a"]
 outline_size = 5
@@ -16,7 +17,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_uctw1")
-rewards = Array[PackedScene]([ExtResource("2_da51v"), ExtResource("3_a4cj7"), ExtResource("4_vgsqn")])
+rewards = Array[PackedScene]([ExtResource("2_da51v"), ExtResource("3_a4cj7"), ExtResource("4_vgsqn"), ExtResource("5_im7fe")])
 
 [node name="Background" parent="." instance=ExtResource("1_2toqg")]
 
