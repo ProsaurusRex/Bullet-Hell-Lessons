@@ -6,6 +6,7 @@ extends Node2D
 							preload("res://Enemies/seeker.tscn")]
 @onready var boss_scenes = [preload("res://Enemies/Boss/boss_easy.tscn"),
 							preload("res://Enemies/Boss/boss_medium.tscn"),
+							preload("res://Enemies/Boss/missile_boss.tscn"),
 							preload("res://Enemies/Boss/boss_hard.tscn")]
 
 var score = 0
@@ -15,11 +16,12 @@ var boss_number = 0
 var enemy_spacing = 32
 var new_enemy_pos_x = enemy_spacing
 var enemy_number = 1
+var seeker_frequency = 5
 
 
 func _on_enemy_timer_timeout() -> void:
 	if not boss_active:
-		if enemy_number % 5 == 0:
+		if enemy_number % seeker_frequency == 0:
 			create_enemy(Vector2(randi_range(16, 768/2 - 16), -20), enemy_scenes[1])
 		else:
 			create_enemy(Vector2(randi_range(16, 768/2 - 16), -20))
@@ -45,7 +47,7 @@ func create_enemy(pos, e = enemy_scenes[0]):
 	new_enemy.position = pos
 	new_enemy.bullet_manager = $Bullets
 	new_enemy.connect("destroyed", increase_score)
-	if new_enemy.has_method("set_target"):
+	if new_enemy.has_method("set_target") and is_instance_valid($Player):
 		new_enemy.set_target($Player)
 	$Enemies.add_child(new_enemy)
 
@@ -65,10 +67,12 @@ func create_boss():
 func increase_score(pos, amount = 1):
 	score += amount
 	$Score.text = str(score)
-	if score >= 20 * (boss_number ** 2 + 1) and not boss_active:
+	if score >= 10 * (boss_number ** 2 + 1) and not boss_active:
 		boss_active = true
 		create_boss()
 		boss_number += 1
+		if seeker_frequency > 2:
+			seeker_frequency -= 1
 		if $Timers/EnemyTimer.wait_time > 0.1:
 			$Timers/EnemyTimer.wait_time -= 0.1
 	if randf() < 0.1:

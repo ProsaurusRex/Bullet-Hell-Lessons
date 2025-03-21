@@ -17,4 +17,3 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_tree_exiting() -> void:
 	on_hit.emit(position)
-	queue_free()
